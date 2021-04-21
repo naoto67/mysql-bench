@@ -1,5 +1,5 @@
 bench:
-	go test ./... -bench . -benchmem -test.run=none -benchtime 3s
+	go test ./... -bench . -benchmem -test.run=none -benchtime 10s
 
 docker_up:
 	docker-compose up -d --build

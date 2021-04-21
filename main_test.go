@@ -73,6 +73,34 @@ func Benchmark_SUBQUERY_1000000(b *testing.B) {
 	}
 }
 
+func Benchmark_INNERJOIN_100000_P5(b *testing.B) {
+	prepare(100000)
+
+	b.SetParallelism(5)
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			for i := 0; i < b.N; i++ {
+				innerjoin()
+			}
+		}
+	})
+}
+
+func Benchmark_SUBQUERY_100000_P5(b *testing.B) {
+	prepare(100000)
+
+	b.SetParallelism(5)
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			for i := 0; i < b.N; i++ {
+				subquery()
+			}
+		}
+	})
+}
+
 func innerjoin() {
 	_, err := db.Exec("SELECT * FROM m1 INNER JOIN m2 ON m1.id = m2.m1_id")
 	if err != nil {
