@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  mysql:
+    container_name: bench_mysql
+    image: mysql:5.7
+    command: >
+      mysqld
+      --explicit_defaults_for_timestamp=1
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max_allowed_packet=16MB
+      --binlog-format=ROW
+      --innodb-autoinc-lock-mode=2
+      --max-connections=10000
+      --query_cache_type=0
+      --query_cache_size=0
+    ports:
+      - 13307:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - TZ=UTC
+    volumes:
+      - bench_mysql:/var/lib/mysql
+volumes:
+  bench_mysql:
