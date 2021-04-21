@@ -80,9 +80,7 @@ func Benchmark_INNERJOIN_100000_P5(b *testing.B) {
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			for i := 0; i < b.N; i++ {
-				innerjoin()
-			}
+			innerjoin()
 		}
 	})
 }
@@ -94,9 +92,7 @@ func Benchmark_SUBQUERY_100000_P5(b *testing.B) {
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			for i := 0; i < b.N; i++ {
-				subquery()
-			}
+			subquery()
 		}
 	})
 }
