@@ -98,14 +98,14 @@ func Benchmark_SUBQUERY_100000_P5(b *testing.B) {
 }
 
 func innerjoin() {
-	_, err := db.Exec("SELECT * FROM m1 INNER JOIN m2 ON m1.id = m2.m1_id")
+	_, err := db.Exec("SELECT m1.id FROM m1 INNER JOIN m2 ON m1.id = m2.m1_id")
 	if err != nil {
 		panic(err)
 	}
 }
 
 func subquery() {
-	_, err := db.Exec("SELECT * FROM m1 WHERE EXISTS (SELECT 1 FROM m2 WHERE m1.id = m2.m1_id)")
+	_, err := db.Exec("SELECT m1.id FROM m1 WHERE EXISTS (SELECT 1 FROM m2 WHERE m1.id = m2.m1_id)")
 	if err != nil {
 		panic(err)
 	}
