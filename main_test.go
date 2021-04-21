@@ -57,7 +57,6 @@ func Benchmark_SUBQUERY_100000(b *testing.B) {
 
 func Benchmark_INNERJOIN_1000000(b *testing.B) {
 	prepare(1000000)
-	panic("")
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
